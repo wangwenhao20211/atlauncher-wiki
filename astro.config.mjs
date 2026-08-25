@@ -18,7 +18,7 @@ export default defineConfig({
                  lang: 'en',
                  },
              },
-            defaultLocale: 'zh-CN',
+            defaultLocale: 'zh-cn',
             social: [
                 { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki/' }
             ],
