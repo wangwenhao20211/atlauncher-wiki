@@ -9,7 +9,7 @@ export default defineConfig({
         starlight({
             title: 'Wwh Wiki',
             locales: {
-              'zh-cn': {
+              'zh-CN': {
                  label: '简体中文',
                  lang: 'zh-CN',
                  },
@@ -18,7 +18,7 @@ export default defineConfig({
                  lang: 'en',
                  },
              },
-            defaultLocale: 'zh-cn',
+            defaultLocale: 'zh-CN',
             social: [
                 { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/main' }
             ],
