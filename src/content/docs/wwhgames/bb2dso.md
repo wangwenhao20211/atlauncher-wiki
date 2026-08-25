@@ -1,7 +1,5 @@
 ---
 title: BB2DSO
-description: BB2DSO的简短介绍。
-tags: 游戏,wwhgames
 ---
 
 # BB2DSO
