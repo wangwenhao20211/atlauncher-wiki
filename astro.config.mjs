@@ -20,14 +20,14 @@ export default defineConfig({
              },
             defaultLocale: 'zh-CN',
             social: [
-                { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/main' }
+                { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki/' }
             ],
             pagination: false,
             logo: {
                 src: './src/assets/logo.svg',
             },
             editLink: {
-                baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/main',
+                baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
             },
             sidebar:[
                 {
