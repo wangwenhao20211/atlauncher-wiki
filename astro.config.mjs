@@ -7,38 +7,23 @@ import starlightLinksValidatorPlugin from 'starlight-links-validator';
 export default defineConfig({
     integrations: [
         starlight({
-            title: 'ATLauncher Wiki',
+            title: 'Wwh Wiki',
             social: [
-                { icon: 'github', label: 'GitHub', href: 'https://github.com/ATLauncher/wiki' },
-                { icon: 'discord', label: 'Discord', href: 'https://atl.pw/discord' },
+                { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/main' }
             ],
             pagination: false,
             logo: {
                 src: './src/assets/logo.svg',
             },
             editLink: {
-                baseUrl: 'https://github.com/ATLauncher/wiki/edit/master/',
+                baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/main',
             },
             sidebar: [
                 {
-                    label: 'Getting Started',
-                    autogenerate: { directory: 'getting-started' },
+                    label: '全部文章',
+                    autogenerate: { directory: '.' },
                 },
-                {
-                    label: 'Guides',
-                    autogenerate: { directory: 'guides' },
-                },
-                {
-                    label: 'API Docs',
-                    autogenerate: { directory: 'api-docs' },
-                    collapsed: true,
-                },
-                {
-                    label: 'Platform Docs (Pack Admin)',
-                    autogenerate: { directory: 'pack-admin' },
-                    collapsed: true,
-                },
-            ],
+                     ],
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
     ],
