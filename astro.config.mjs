@@ -24,11 +24,12 @@ export default defineConfig({
             editLink: {
                 baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/main',
             },
-            sidebar: [
+            sidebar:[
                 {
-                    label: '全部文章',
-                    autogenerate: { directory: '.' },
-                }
+                    label: '所有',
+                    autogenerate: { directory: '/src/content/docs' },
+                    collapsed: true,
+                },
             ],
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
