@@ -3,13 +3,12 @@ import starlight from '@astrojs/starlight';
 import starlightImageZoom from 'starlight-image-zoom';
 import starlightLinksValidatorPlugin from 'starlight-links-validator';
 
-// https://astro.build/config
 export default defineConfig({
     integrations: [
         starlight({
             title: 'Wwh Wiki',
             locales: {
-                zh: {
+                root: {
                     label: '简体中文',
                     lang: 'zh-CN',
                 },
@@ -18,7 +17,6 @@ export default defineConfig({
                     lang: 'en',
                 },
             },
-            defaultLocale: 'zh',
             social: [
                 { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki' }
             ],
@@ -27,7 +25,7 @@ export default defineConfig({
                 src: './src/assets/logo.svg',
             },
             editLink: {
-                baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',  // 保持你的 master 分支
+                baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
             },
             sidebar: [
                 {
