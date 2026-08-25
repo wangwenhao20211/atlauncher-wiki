@@ -30,6 +30,11 @@ export default defineConfig({
                     autogenerate: { directory: 'wwhgames' },
                     collapsed: true,
                 },
+                {
+                    label: 'B站UP',
+                    autogenerate: { directory: 'bilibili_up' },
+                    collapsed: true,
+                },
             ],
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
