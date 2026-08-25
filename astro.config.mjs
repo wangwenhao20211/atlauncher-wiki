@@ -8,6 +8,12 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'Wwh Wiki',
+            locales: {
+                root: {
+                    label: '简体中文',
+                    lang: 'zh-CN',
+                },
+            },
             social: [
                 { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/main' }
             ],
@@ -23,7 +29,7 @@ export default defineConfig({
                     label: '全部文章',
                     autogenerate: { directory: '.' },
                 },
-                     ],
+            ],
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
     ],
