@@ -9,9 +9,9 @@ export default defineConfig({
         starlight({
             title: 'Wwh Wiki',
             locales: {
-              'zh-cn': {
+              zh-cn: {
                  label: '简体中文',
-                 lang: 'zh-cn',
+                 lang: 'zh-CN',
                  },
                en: {
                  label: 'English',
