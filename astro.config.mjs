@@ -11,7 +11,7 @@ export default defineConfig({
             locales: {
               'zh-cn': {
                  label: '简体中文',
-                 lang: 'zh-CN',
+                 lang: 'zh-cn',
                  },
                en: {
                  label: 'English',
