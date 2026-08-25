@@ -28,7 +28,7 @@ export default defineConfig({
                 {
                     label: '全部文章',
                     autogenerate: { directory: '.' },
-                },
+                }
             ],
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
