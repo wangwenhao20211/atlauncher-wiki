@@ -26,8 +26,8 @@ export default defineConfig({
             },
             sidebar:[
                 {
-                    label: '所有',
-                    autogenerate: { directory: '/src/content/docs' },
+                    label: 'Wwhgames',
+                    autogenerate: { directory: 'wwhgames' },
                     collapsed: true,
                 },
             ],
