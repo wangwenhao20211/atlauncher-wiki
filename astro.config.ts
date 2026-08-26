@@ -21,14 +21,23 @@ export default defineConfig({
             sidebar: [
                 {
                     label: '📚 全部文章',
+                    translations: {
+                        en: '📚 All Articles',
+                    },
                     items: [
                         {
                             label: 'Wwhgames',
+                            translations: {
+                                en: 'Wwhgames',
+                            },
                             autogenerate: { directory: 'wwhgames' },
                             collapsed: true,
                         },
                         {
                             label: 'B站UP',
+                            translations: {
+                                en: 'Bilibili Creators',
+                            },
                             autogenerate: { directory: 'bilibili_up' },
                             collapsed: true,
                         },
