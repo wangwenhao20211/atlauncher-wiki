@@ -27,6 +27,7 @@ export default defineConfig({
             editLink: {
                 baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
             },
+            defaultLocale: 'root',
             sidebar: {
     root: [
         group('Wwhgames', [
