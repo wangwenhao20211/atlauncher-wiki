@@ -1,11 +1,8 @@
-export function group(label: string, items: any[], translations?: Record<string, string>) {
-  return { label, items, ...(translations && { translations }) };
-}
-
 export const sidebar = [
-  group(
-    '🎮 Wwhgames',
-    [
+  {
+    label: '🎮 Wwhgames',
+    translations: { en: '🎮 Wwhgames' },
+    items: [
       {
         label: 'Wwhgames',
         translations: { en: 'Wwhgames' },
@@ -13,11 +10,11 @@ export const sidebar = [
         collapsed: true,
       },
     ],
-    { en: '🎮 Wwhgames' }
-  ),
-  group(
-    '📺 B站UP',
-    [
+  },
+  {
+    label: '📺 B站UP',
+    translations: { en: '📺 Bilibili Creators' },
+    items: [
       {
         label: 'B站UP',
         translations: { en: 'Bilibili Creators' },
@@ -25,6 +22,5 @@ export const sidebar = [
         collapsed: true,
       },
     ],
-    { en: '📺 Bilibili Creators' }
-  ),
+  },
 ];
