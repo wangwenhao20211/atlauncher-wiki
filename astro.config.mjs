@@ -28,41 +28,23 @@ export default defineConfig({
                 baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
             },
             sidebar: {
-                root: [
-                    {
-                        label: '个人文章',
-                        items: [
-                            {
-                                label: 'Wwhgames',
-                                autogenerate: { directory: 'wwhgames' },
-                                collapsed: true,
-                            },
-                            {
-                                label: 'B站UP',
-                                autogenerate: { directory: 'bilibili_up' },
-                                collapsed: true,
-                            },
-                        ],
-                    },
-                ],
-                en: [
-                    {
-                        label: 'Personal Articles',
-                        items: [
-                            {
-                                label: 'Wwhgames',
-                                autogenerate: { directory: 'wwhgames' },
-                                collapsed: true,
-                            },
-                            {
-                                label: 'Bilibili Creators',
-                                autogenerate: { directory: 'bilibili_up' },
-                                collapsed: true,
-                            },
-                        ],
-                    },
-                ],
-            },
+    root: [
+        group('Wwhgames', [
+            { label: '游戏介绍', autogenerate: { directory: 'wwhgames' } },
+        ]),
+        group('B站UP', [
+            { label: 'UP主列表', autogenerate: { directory: 'bilibili_up' } },
+        ]),
+    ],
+    en: [
+        group('Wwhgames', [
+            { label: 'Game Info', autogenerate: { directory: 'wwhgames' } },
+        ]),
+        group('Bilibili Creators', [
+            { label: 'Creator List', autogenerate: { directory: 'bilibili_up' } },
+        ]),
+    ],
+},
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
     ],
