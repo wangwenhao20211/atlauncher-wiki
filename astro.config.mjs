@@ -27,18 +27,42 @@ export default defineConfig({
             editLink: {
                 baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
             },
-            sidebar: [
-                {
-                    label: 'Wwhgames',
-                    autogenerate: { directory: 'wwhgames' },
-                    collapsed: true,
-                },
-                {
-                    label: 'B站UP',
-                    autogenerate: { directory: 'bilibili_up' },
-                    collapsed: true,
-                },
-            ],
+            sidebar: {
+                root: [
+                    {
+                        label: '个人文章',
+                        items: [
+                            {
+                                label: 'Wwhgames',
+                                autogenerate: { directory: 'wwhgames' },
+                                collapsed: true,
+                            },
+                            {
+                                label: 'B站UP',
+                                autogenerate: { directory: 'bilibili_up' },
+                                collapsed: true,
+                            },
+                        ],
+                    },
+                ],
+                en: [
+                    {
+                        label: 'Personal Articles',
+                        items: [
+                            {
+                                label: 'Wwhgames',
+                                autogenerate: { directory: 'wwhgames' },
+                                collapsed: true,
+                            },
+                            {
+                                label: 'Bilibili Creators',
+                                autogenerate: { directory: 'bilibili_up' },
+                                collapsed: true,
+                            },
+                        ],
+                    },
+                ],
+            },
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
     ],
