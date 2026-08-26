@@ -17,6 +17,43 @@ export default defineConfig({
                     lang: 'en',
                 },
             },
+            defaultLocale: 'root',
+            sidebar: {
+                root: [
+                    {
+                        label: '📚 全部文章',
+                        items: [
+                            {
+                                label: 'Wwhgames',
+                                autogenerate: { directory: 'wwhgames' },
+                                collapsed: true,
+                            },
+                            {
+                                label: 'B站UP',
+                                autogenerate: { directory: 'bilibili_up' },
+                                collapsed: true,
+                            },
+                        ],
+                    },
+                ],
+                en: [
+                    {
+                        label: '📚 All Articles',
+                        items: [
+                            {
+                                label: 'Wwhgames',
+                                autogenerate: { directory: 'wwhgames' },
+                                collapsed: true,
+                            },
+                            {
+                                label: 'Bilibili Creators',
+                                autogenerate: { directory: 'bilibili_up' },
+                                collapsed: true,
+                            },
+                        ],
+                    },
+                ],
+            },
             social: [
                 { icon: 'github', label: 'GitHub', href: 'https://github.com/wangwenhao20211/atlauncher-wiki' }
             ],
@@ -27,25 +64,6 @@ export default defineConfig({
             editLink: {
                 baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
             },
-            defaultLocale: 'root',
-            sidebar: {
-    root: [
-        group('Wwhgames', [
-            { label: '游戏介绍', autogenerate: { directory: 'wwhgames' } },
-        ]),
-        group('B站UP', [
-            { label: 'UP主列表', autogenerate: { directory: 'bilibili_up' } },
-        ]),
-    ],
-    en: [
-        group('Wwhgames', [
-            { label: 'Game Info', autogenerate: { directory: 'wwhgames' } },
-        ]),
-        group('Bilibili Creators', [
-            { label: 'Creator List', autogenerate: { directory: 'bilibili_up' } },
-        ]),
-    ],
-},
             plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
         }),
     ],
