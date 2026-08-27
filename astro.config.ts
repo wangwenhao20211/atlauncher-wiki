@@ -35,12 +35,16 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
       },
-      plugins: [starlightImageZoom(), starlightLinksValidatorPlugin(),starlightGiscus({
-  repo: 'wangwenhao20211/atlauncher-wiki',
-  repoId: 'R_kgDOUDmcbA',
-  category: 'Announcements',
-  categoryId: 'DIC_kwDOUDmcbM4DEO0g',
-})],
+      plugins: [
+        starlightImageZoom(),
+        starlightLinksValidatorPlugin(),
+        starlightGiscus({
+          repo: 'wangwenhao20211/atlauncher-wiki',
+          repoId: 'R_kgDOUDmcbA',
+          category: 'Announcements',
+          categoryId: 'DIC_kwDOUDmcbM4DEO0g',
+        }),
+      ],
     }),
   ],
 });
