@@ -7,4 +7,4 @@ export const head = [
     tag: 'script',
     attrs: { type: 'module', src: '/scripts/reading-time.js' },
   },
-] as const;
+] as any;
