@@ -32,7 +32,7 @@ export default defineConfig({
           tag: 'script',
           attrs: { type: 'module' },
           content: `
-            import { createWidget } from 'https://esm.sh/@chnak/l2d-widget@0.1.2';
+            import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
@@ -51,7 +51,6 @@ export default defineConfig({
                 },
               },
               position: 'bottom-right',
-              draggable: true,
             });
           `,
         },
@@ -95,6 +94,47 @@ export default defineConfig({
               document.addEventListener('DOMContentLoaded', addReadingTime);
             } else {
               addReadingTime();
+            }
+          `,
+        },
+        {
+          tag: 'script',
+          attrs: { type: 'module' },
+          content: `
+            function addCreatePageLink() {
+              const path = window.location.pathname;
+              if (path === '/' || path === '/en/') return;
+              const isEnglish = path.startsWith('/en/') || 
+                                document.documentElement.lang?.startsWith('en');
+              const cleanPath = isEnglish ? path.replace(/^\\/en\\//, '/') : path;
+              const baseUrl = 'https://github.com/wangwenhao20211/atlauncher-wiki/new/main/src/content/docs';
+              const targetPath = isEnglish ? \`en\${cleanPath}\` : cleanPath;
+              const createUrl = \`\${baseUrl}\${targetPath}\`;
+              const editLink = document.querySelector('a[href*="edit/master"]');
+              if (!editLink) return;
+              const container = editLink.parentElement;
+              if (!container) return;
+              const sep = document.createElement('span');
+              sep.textContent = '·';
+              sep.style.cssText = 'margin: 0 8px; opacity: 0.6;';
+              const createLink = document.createElement('a');
+              createLink.href = createUrl;
+              createLink.textContent = isEnglish ? 'Create Page' : '创建页面';
+              createLink.target = '_blank';
+              createLink.style.cssText = \`
+                color: var(--sl-color-text-accent);
+                text-decoration: none;
+                font-size: 0.9rem;
+              \`;
+              createLink.onmouseover = () => createLink.style.textDecoration = 'underline';
+              createLink.onmouseout = () => createLink.style.textDecoration = 'none';
+              container.appendChild(sep);
+              container.appendChild(createLink);
+            }
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', addCreatePageLink);
+            } else {
+              addCreatePageLink();
             }
           `,
         },
