@@ -36,23 +36,25 @@ export default defineConfig({
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
-                scale: 0.5,
-                vOffset: -120,
-              },
-              tips: {
-                typing: {
-                  param: 'ParamMouthOpenY',
-                  speed: 60,
+                scale: 0.6,
+                tips: {
+                  typing: {
+                    param: 'ParamMouthOpenY',
+                    speed: 60,
+                  },
+                  welcomeMessage: ['你好！'],
+                  messages: [
+                    '去评论区说几句？',
+                    'zzzzzzzzzzzzz',
+                    '试试搜点什么？',
+                    'PlaceholderContent4',
+                  ],
+                  duration: 3000,
+                  interval: 5000,
                 },
-                welcomeMessage: ['你好！'],
-                messages: [
-                  '去评论区说几句？',
-                  'zzzzzzzzzzzzz',
-                  '试试搜点什么？',
-                  'PlaceholderContent4',
-                ],
-                duration: 3000,
-                interval: 7000,
+              },
+              display: {
+                vOffset: -400,
               },
               position: 'bottom-right',
             });
