@@ -32,40 +32,69 @@ export default defineConfig({
           tag: 'script',
           attrs: { type: 'module' },
           content: `
-            import Live2d from 'https://unpkg.com/@tomiaa/live2d@latest/es/index.js';
-
-            // 创建看板娘实例
-            const live2d = new Live2d({
-              el: '#live2d-widget',           // 容器 ID
-              model: '/models/yanwenzi.model3.json',  // 你的模型路径
-              allowDrag: true,                // 开启拖拽
-              width: 200,                     // 宽度
-              height: 300,                    // 高度
-              // 消息配置（如果需要说话功能）
-              // hitokoto: true,              // 启用一言
-              // messages: ['你好！', '欢迎来玩~'],
-              // messageInterval: 20000,      // 间隔 20s
+            import { createWidget } from 'https://esm.sh/@chnak/l2d-widget@0.1.2';
+            createWidget({
+              model: {
+                path: '/models/yanwenzi.model3.json',
+                scale: 0.4,
+                tips: {
+                  typing: { param: 'ParamMouthOpenY', speed: 60 },
+                  welcomeMessage: ['你好！'],
+                  messages: [
+                    '去评论区说几句？',
+                    'zzzzzzzzzzzzz',
+                    '试试搜点什么？',
+                    'PlaceholderContent4',
+                  ],
+                  duration: 3000,
+                  interval: 20000,
+                },
+              },
+              position: 'bottom-right',
+              draggable: true,
             });
-
-            // 如果不想自动显示一言，可以这样配置
-            // 或者用自定义消息列表
-            // live2d.setMessages(['你好！', '欢迎来到我的 Wiki~']);
           `,
         },
-        // 添加看板娘容器样式（确保显示在右下角）
         {
-          tag: 'style',
+          tag: 'script',
+          attrs: { type: 'module' },
           content: `
-            #live2d-widget {
-              position: fixed;
-              bottom: 20px;
-              right: 20px;
-              z-index: 9999;
-              cursor: grab;
-              pointer-events: auto;
+            function addReadingTime() {
+              if (window.location.pathname === '/' || window.location.pathname === '/en/') return;
+              const content = document.querySelector('.sl-markdown-content, main');
+              if (!content) return;
+              const isEnglish = window.location.pathname.startsWith('/en/') || 
+                                document.documentElement.lang?.startsWith('en');
+              const text = content.textContent || '';
+              const chineseChars = (text.match(/[\\u4e00-\\u9fa5]/g) || []).length;
+              const englishWords = text.trim().split(/\\s+/).filter(w => w.length > 0).length;
+              const chineseTime = chineseChars / 350;
+              const englishTime = englishWords / 200;
+              const totalMinutes = Math.max(chineseTime, englishTime);
+              const readingTime = Math.max(1, Math.round(totalMinutes));
+              const badge = document.createElement('div');
+              badge.style.cssText = \`
+                display: inline-block;
+                padding: 4px 14px;
+                margin-bottom: 16px;
+                background: var(--sl-color-gray-6);
+                color: var(--sl-color-white);
+                border-radius: 20px;
+                font-size: 0.85rem;
+                opacity: 0.8;
+              \`;
+              badge.textContent = isEnglish ? \`\${readingTime} min read\` : \`\${readingTime} 分钟阅读\`;
+              const title = content.querySelector('h1, h2, h3');
+              if (title) {
+                title.parentNode.insertBefore(badge, title);
+              } else {
+                content.prepend(badge);
+              }
             }
-            #live2d-widget:active {
-              cursor: grabbing;
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', addReadingTime);
+            } else {
+              addReadingTime();
             }
           `,
         },
