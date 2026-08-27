@@ -40,7 +40,7 @@ export default defineConfig({
                 tips: {
                   typing: {
                     param: 'ParamMouthOpenY',
-                    speed: 80,
+                    speed: 90,
                   },
                   welcomeMessage: ['你好！'],
                   messages: [
@@ -49,14 +49,12 @@ export default defineConfig({
                     '试试搜点什么？',
                     'PlaceholderContent4',
                   ],
-                  duration: 3000,
+                  duration: 2000,
                   interval: 10000,
                 },
               },
-              position: 'bottom-left',
-              display: {
-                height: 250,
-              },
+              position: 'bottom-right',
+              size: { width: 300, height: 100 },
             });
           `,
         },
