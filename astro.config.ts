@@ -32,23 +32,21 @@ export default defineConfig({
           tag: 'script',
           attrs: { type: 'module' },
           content: `
-            import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
+            import { createWidget } from 'https://esm.sh/@chnak/l2d-widget@0.1.2';
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
                 scale: 0.6,
                 tips: {
-                  typing: {
-                    param: 'ParamMouthOpenY',
-                    speed: 60,
-                  },
-                  welcomeMessage: ['你好！', '欢迎来到 Wwh Wiki！'],
-                  messages: ['休息一下吧～', '记得多喝水！', '点个赞再走～'],
-                  duration: 4000,
-                  interval: 6000,
+                  typing: { param: 'ParamMouthOpenY', speed: 60 },
+                  welcomeMessage: ['你好！'],
+                  messages: [],
+                  duration: 3000,      // 显示3秒
+                  interval: 20000,     // 间隔20秒
                 },
               },
               position: 'bottom-right',
+              draggable: true,        // 可拖拽
             });
           `,
         },
