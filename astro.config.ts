@@ -37,12 +37,13 @@ export default defineConfig({
               model: {
                 path: '/models/yanwenzi.model3.json',
                 scale: 0.3,
-              },
-              display: {
-                vOffset: -160,
+                vOffset: -120,
               },
               tips: {
-                typing: { param: 'ParamMouthOpenY', speed: 60 },
+                typing: {
+                  param: 'ParamMouthOpenY',
+                  speed: 60,
+                },
                 welcomeMessage: ['你好！'],
                 messages: [
                   '去评论区说几句？',
