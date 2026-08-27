@@ -44,9 +44,23 @@ export default defineConfig({
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
-                scale: 0.6,   // 尝试传递给底层模型的缩放参数
+                scale: 0.5,   // 尝试缩放（如果库支持）
+                tips: {
+                  typing: {
+                    param: 'PARAM_MOUTH_OPEN_Y',
+                    speed: 200,
+                  },
+                  welcomeMessage: ['你好！', '欢迎来到 Wwh Wiki！'],
+                  messages: [
+                    'messagestestcontent1',
+                    'messagestestcontent2',
+                    'messagestestcontent3',
+                  ],
+                  duration: 4000,
+                  interval: 6000,
+                },
               },
-              position: 'bottom-right',
+              position: 'bottom-right',   // 位置在根选项，不在 model 内
             });
           `,
         },
