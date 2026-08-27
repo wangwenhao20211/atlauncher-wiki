@@ -39,7 +39,7 @@ export default defineConfig({
         {
           tag: 'script',
           attrs: { type: 'module' },
-          children: `
+          content: `
             import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
             createWidget({
               model: {
