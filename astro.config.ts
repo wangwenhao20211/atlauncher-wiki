@@ -36,11 +36,11 @@ export default defineConfig({
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
-                scale: 0.6,
+                scale: 0.25,
                 tips: {
                   typing: {
                     param: 'ParamMouthOpenY',
-                    speed: 60,
+                    speed: 80,
                   },
                   welcomeMessage: ['你好！'],
                   messages: [
@@ -50,11 +50,8 @@ export default defineConfig({
                     'PlaceholderContent4',
                   ],
                   duration: 3000,
-                  interval: 5000,
+                  interval: 10000,
                 },
-              },
-              display: {
-                vOffset: -400,
               },
               position: 'bottom-right',
             });
