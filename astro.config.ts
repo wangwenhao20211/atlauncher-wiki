@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightImageZoom from 'starlight-image-zoom';
 import starlightLinksValidatorPlugin from 'starlight-links-validator';
+import starlightGiscus from 'starlight-giscus';
 import { sidebar } from './astro.sidebar';
 
 export default defineConfig({
@@ -34,7 +35,12 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
       },
-      plugins: [starlightImageZoom(), starlightLinksValidatorPlugin()],
+      plugins: [starlightImageZoom(), starlightLinksValidatorPlugin(),starlightGiscus({
+  repo: 'wangwenhao20211/atlauncher-wiki',
+  repoId: 'R_kgDOUDmcbA',
+  category: 'Announcements',
+  categoryId: 'DIC_kwDOUDmcbM4DEO0g',
+})],
     }),
   ],
 });
