@@ -43,7 +43,7 @@ export default defineConfig({
             import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
             createWidget({
               model: {
-                path: '/models/YWZ/yanwenzi.model3.json',
+                path: '/models/yanwenzi.model3.json',
               },
               position: 'bottom-right',   // 位置：bottom-right / bottom-left / top-right / top-left
             });
