@@ -101,40 +101,124 @@ export default defineConfig({
           tag: 'script',
           attrs: { type: 'module' },
           content: `
-            function addCreatePageLink() {
-              const path = window.location.pathname;
-              if (path === '/' || path === '/en/') return;
-              const isEnglish = path.startsWith('/en/') || 
+            function addCreatePageButton() {
+              const isEnglish = window.location.pathname.startsWith('/en/') || 
                                 document.documentElement.lang?.startsWith('en');
-              const cleanPath = isEnglish ? path.replace(/^\\/en\\//, '/') : path;
-              const baseUrl = 'https://github.com/wangwenhao20211/atlauncher-wiki/new/main/src/content/docs';
-              const targetPath = isEnglish ? \`en\${cleanPath}\` : cleanPath;
-              const createUrl = \`\${baseUrl}\${targetPath}\`;
-              const editLink = document.querySelector('a[href*="edit/master"]');
-              if (!editLink) return;
-              const container = editLink.parentElement;
-              if (!container) return;
-              const sep = document.createElement('span');
-              sep.textContent = '·';
-              sep.style.cssText = 'margin: 0 8px; opacity: 0.6;';
-              const createLink = document.createElement('a');
-              createLink.href = createUrl;
-              createLink.textContent = isEnglish ? 'Create Page' : '创建页面';
-              createLink.target = '_blank';
-              createLink.style.cssText = \`
-                color: var(--sl-color-text-accent);
-                text-decoration: none;
+              const sidebar = document.querySelector('.sidebar, .sl-sidebar, nav.sidebar');
+              if (!sidebar) return;
+              const container = document.createElement('div');
+              container.style.cssText = 'padding: 1rem 0.5rem; border-top: 1px solid var(--sl-color-gray-5); margin-top: 1rem;';
+              const button = document.createElement('button');
+              button.textContent = isEnglish ? 'Create Page' : '创建页面';
+              button.style.cssText = \`
+                width: 100%;
+                padding: 0.5rem 1rem;
+                border: 1px solid var(--sl-color-accent);
+                border-radius: 6px;
+                background: transparent;
+                color: var(--sl-color-accent);
                 font-size: 0.9rem;
+                cursor: pointer;
+                transition: background 0.2s;
               \`;
-              createLink.onmouseover = () => createLink.style.textDecoration = 'underline';
-              createLink.onmouseout = () => createLink.style.textDecoration = 'none';
-              container.appendChild(sep);
-              container.appendChild(createLink);
+              button.onmouseover = () => button.style.background = 'var(--sl-color-accent-low)';
+              button.onmouseout = () => button.style.background = 'transparent';
+              button.onclick = () => {
+                const modal = document.createElement('div');
+                modal.style.cssText = \`
+                  position: fixed;
+                  top: 0; left: 0; right: 0; bottom: 0;
+                  background: rgba(0,0,0,0.5);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: 99999;
+                \`;
+                const panel = document.createElement('div');
+                panel.style.cssText = \`
+                  background: var(--sl-color-bg);
+                  padding: 2rem;
+                  border-radius: 12px;
+                  max-width: 400px;
+                  width: 90%;
+                  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                \`;
+                const label = document.createElement('label');
+                label.textContent = isEnglish ? 'Enter page name (without .md):' : '输入页面名称（不含 .md）：';
+                label.style.cssText = 'display: block; margin-bottom: 0.5rem; font-weight: 600;';
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = isEnglish ? 'e.g. hello-world' : '例如：hello-world';
+                input.style.cssText = \`
+                  width: 100%;
+                  padding: 0.6rem 1rem;
+                  border: 1px solid var(--sl-color-gray-5);
+                  border-radius: 6px;
+                  background: var(--sl-color-bg);
+                  color: var(--sl-color-text);
+                  font-size: 1rem;
+                  margin-bottom: 1rem;
+                \`;
+                const btnGroup = document.createElement('div');
+                btnGroup.style.cssText = 'display: flex; gap: 0.5rem; justify-content: flex-end;';
+                const cancelBtn = document.createElement('button');
+                cancelBtn.textContent = isEnglish ? 'Cancel' : '取消';
+                cancelBtn.style.cssText = \`
+                  padding: 0.5rem 1.2rem;
+                  border: 1px solid var(--sl-color-gray-5);
+                  border-radius: 6px;
+                  background: transparent;
+                  color: var(--sl-color-text);
+                  cursor: pointer;
+                \`;
+                cancelBtn.onclick = () => document.body.removeChild(modal);
+                const confirmBtn = document.createElement('button');
+                confirmBtn.textContent = isEnglish ? 'Create' : '创建';
+                confirmBtn.style.cssText = \`
+                  padding: 0.5rem 1.2rem;
+                  border: none;
+                  border-radius: 6px;
+                  background: var(--sl-color-accent);
+                  color: white;
+                  cursor: pointer;
+                \`;
+                confirmBtn.onclick = () => {
+                  const name = input.value.trim();
+                  if (!name) {
+                    alert(isEnglish ? 'Please enter a page name.' : '请输入页面名称。');
+                    return;
+                  }
+                  const path = window.location.pathname;
+                  const cleanPath = path.replace(/^\\/en\\//, '/');
+                  const baseUrl = 'https://github.com/wangwenhao20211/atlauncher-wiki/new/main/src/content/docs';
+                  let targetPath = isEnglish ? \`en\${cleanPath}\` : cleanPath;
+                  if (targetPath.endsWith('/')) targetPath = targetPath.slice(0, -1);
+                  const dir = targetPath.substring(0, targetPath.lastIndexOf('/') + 1);
+                  const finalPath = dir + name + '.md';
+                  const createUrl = \`\${baseUrl}\${finalPath}\`;
+                  window.open(createUrl, '_blank');
+                  document.body.removeChild(modal);
+                };
+                btnGroup.appendChild(cancelBtn);
+                btnGroup.appendChild(confirmBtn);
+                panel.appendChild(label);
+                panel.appendChild(input);
+                panel.appendChild(btnGroup);
+                modal.appendChild(panel);
+                document.body.appendChild(modal);
+                input.focus();
+                input.addEventListener('keydown', (e) => {
+                  if (e.key === 'Enter') confirmBtn.click();
+                  if (e.key === 'Escape') document.body.removeChild(modal);
+                });
+              };
+              container.appendChild(button);
+              sidebar.appendChild(container);
             }
             if (document.readyState === 'loading') {
-              document.addEventListener('DOMContentLoaded', addCreatePageLink);
+              document.addEventListener('DOMContentLoaded', addCreatePageButton);
             } else {
-              addCreatePageLink();
+              addCreatePageButton();
             }
           `,
         },
