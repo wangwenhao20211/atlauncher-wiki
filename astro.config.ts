@@ -10,14 +10,8 @@ export default defineConfig({
     starlight({
       title: 'Wwh Wiki',
       locales: {
-        root: {
-          label: '简体中文',
-          lang: 'zh-CN',
-        },
-        en: {
-          label: 'English',
-          lang: 'en',
-        },
+        root: { label: '简体中文', lang: 'zh-CN' },
+        en: { label: 'English', lang: 'en' },
       },
       defaultLocale: 'root',
       sidebar,
@@ -29,9 +23,7 @@ export default defineConfig({
         },
       ],
       pagination: false,
-      logo: {
-        src: './src/assets/logo.svg',
-      },
+      logo: { src: './src/assets/logo.svg' },
       editLink: {
         baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
       },
@@ -44,23 +36,19 @@ export default defineConfig({
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
-                scale: 0.5,   // 尝试缩放（如果库支持）
+                scale: 0.6,
                 tips: {
                   typing: {
-                    param: 'PARAM_MOUTH_OPEN_Y',
-                    speed: 200,
+                    param: 'ParamMouthOpenY',
+                    speed: 60,
                   },
                   welcomeMessage: ['你好！', '欢迎来到 Wwh Wiki！'],
-                  messages: [
-                    'messagestestcontent1',
-                    'messagestestcontent2',
-                    'messagestestcontent3',
-                  ],
+                  messages: ['休息一下吧～', '记得多喝水！', '点个赞再走～'],
                   duration: 4000,
                   interval: 6000,
                 },
               },
-              position: 'bottom-right',   // 位置在根选项，不在 model 内
+              position: 'bottom-right',
             });
           `,
         },
