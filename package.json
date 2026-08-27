@@ -33,7 +33,8 @@
     "sharp": "^0.34.1",
     "starlight-image-zoom": "^0.12.0",
     "starlight-links-validator": "^0.16.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "starlight-giscus": "^1.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
