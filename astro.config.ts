@@ -46,7 +46,7 @@ export default defineConfig({
                 path: '/models/yanwenzi.model3.json',
               },
               position: 'bottom-right',
-              scale: 0.6,
+              scale: 0.1,
             });
           `,
         },
