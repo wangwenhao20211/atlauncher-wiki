@@ -44,6 +44,7 @@ export default defineConfig({
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
+                scale: 0.6,   // 尝试传递给底层模型的缩放参数
               },
               position: 'bottom-right',
             });
