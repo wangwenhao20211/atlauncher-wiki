@@ -45,6 +45,37 @@ export default defineConfig({
               model: {
                 path: '/models/yanwenzi.model3.json',
               },
+              position: 'bottom-right',
+              scale: 0.4,   // 缩放，调小模型大小，可根据需要修改（如 0.5 ~ 0.8）
+              // offsetX: 0, // 可选：水平偏移
+              // offsetY: 0, // 可选：垂直偏移
+            });
+          `,
+        },
+      ],
+      plugins: [
+        starlightImageZoom(),
+        starlightLinksValidatorPlugin(),
+        starlightGiscus({
+          repo: 'wangwenhao20211/atlauncher-wiki',
+          repoId: 'R_kgDOUDmcbA',
+          category: 'Announcements',
+          categoryId: 'DIC_kwDOUDmcbM4DEO0g',
+        }),
+      ],
+    }),
+  ],
+});      },
+      head: [
+        {
+          tag: 'script',
+          attrs: { type: 'module' },
+          content: `
+            import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
+            createWidget({
+              model: {
+                path: '/models/yanwenzi.model3.json',
+              },
               position: 'bottom-right',   // 位置：bottom-right / bottom-left / top-right / top-left
             });
           `,
