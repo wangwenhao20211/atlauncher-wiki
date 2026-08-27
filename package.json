@@ -1,19 +1,19 @@
 {
-  "name": "@atlauncher/wiki",
+  "name": "@wangwenhao20211/wiki",
   "version": "0.0.1",
   "description": "Static wiki written with Markdown using Astro and Starlight.",
   "type": "module",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ATLauncher/wiki.git"
+    "url": "git+https://github.com/wangwenhao20211/atlauncher-wiki.git"
   },
-  "author": "Ryan Dowling <ryan.dowling@atlauncher.com>",
+  "author": "wangwenhao20211 <你的邮箱>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ATLauncher/wiki/issues"
+    "url": "https://github.com/wangwenhao20211/atlauncher-wiki/issues"
   },
-  "homepage": "https://github.com/ATLauncher/wiki#readme",
+  "homepage": "https://github.com/wangwenhao20211/atlauncher-wiki#readme",
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/starlight": "^0.34.3",
+    "@astrojs/starlight": "^0.41.0",
     "astro": "^5.7.13",
     "sharp": "^0.34.1",
     "starlight-image-zoom": "^0.12.0",
