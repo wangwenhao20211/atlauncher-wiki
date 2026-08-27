@@ -8,21 +8,21 @@ function addReadingTime() {
 
   const text = content.textContent || '';
 
-  // 统计中文字符（基本汉字范围）
+  // 统计中文字符（基本汉字）和英文字母（用于计算单词数）
   const chineseChars = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
-  // 统计英文字母（不区分大小写）
-  const englishChars = (text.match(/[a-zA-Z]/g) || []).length;
-
-  // 根据内容的主要语言决定显示单位
-  const isChineseContent = chineseChars > englishChars;
-  const label = isChineseContent ? '分钟阅读' : 'min read';
-
-  // 计算阅读时间（保留原算法：取中文时间和英文时间的较大值）
-  const chineseTime = chineseChars / 350;      // 中文阅读速度 350 字/分钟
+  // 英文单词数：按空白分割后过滤空串
   const englishWords = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-  const englishTime = englishWords / 200;      // 英文阅读速度 200 词/分钟
-  const totalMinutes = Math.max(chineseTime, englishTime);
+
+  // 分别计算阅读时间（分钟）
+  const chineseTime = chineseChars / 350;      // 中文 350 字/分钟
+  const englishTime = englishWords / 200;      // 英文 200 词/分钟
+  const totalMinutes = chineseTime + englishTime;
   const readingTime = Math.max(1, Math.round(totalMinutes));
+
+  // 判断当前界面语言：优先使用 html 的 lang 属性，其次根据路径
+  const htmlLang = document.documentElement.lang || '';
+  const isEnglishUI = htmlLang.startsWith('en') || window.location.pathname.startsWith('/en/');
+  const label = isEnglishUI ? 'min read' : '分钟阅读';
 
   // 创建阅读时间徽章
   const badge = document.createElement('div');
