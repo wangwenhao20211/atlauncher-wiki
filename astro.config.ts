@@ -36,7 +36,7 @@ export default defineConfig({
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
-                scale: 0.25,
+                scale: 0.35,
                 tips: {
                   typing: {
                     param: 'ParamMouthOpenY',
