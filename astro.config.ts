@@ -35,6 +35,22 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/wangwenhao20211/atlauncher-wiki/edit/master',
       },
+      head: [
+        {
+          tag: 'script',
+          attrs: { type: 'module' },
+          children: `
+            import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
+            createWidget({
+              model: {
+                path: '/models/YWZ/yanwenzi.model3.json',
+              },
+              position: 'bottom-right',   // 位置：bottom-right / bottom-left / top-right / top-left
+            });
+          `,
+        },
+      ],
+      // ------------------------------------------------
       plugins: [
         starlightImageZoom(),
         starlightLinksValidatorPlugin(),
