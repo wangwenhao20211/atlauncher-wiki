@@ -53,7 +53,10 @@ export default defineConfig({
                   interval: 10000,
                 },
               },
-              position: 'bottom-right',
+              position: 'bottom-left',
+              display: {
+                height: 250,
+              },
             });
           `,
         },
