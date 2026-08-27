@@ -39,7 +39,7 @@ export default defineConfig({
                 scale: 0.3,
               },
               display: {
-                vOffset: -20,
+                vOffset: -160,
               },
               tips: {
                 typing: { param: 'ParamMouthOpenY', speed: 60 },
@@ -51,7 +51,7 @@ export default defineConfig({
                   'PlaceholderContent4',
                 ],
                 duration: 3000,
-                interval: 20000,
+                interval: 10000,
               },
               position: 'bottom-right',
             });
