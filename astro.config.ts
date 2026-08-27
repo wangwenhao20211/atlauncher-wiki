@@ -37,6 +37,18 @@ export default defineConfig({
       },
       head: [
         {
+          // 通过 CSS 缩放 Live2D 模型（因为模型 JSON 无 Scale 字段，库也无缩放参数）
+          tag: 'style',
+          content: `
+            #l2d-widget-container canvas {
+              transform: scale(0.6);          /* 调整数值改变模型大小，建议 0.4 ~ 0.8 */
+              transform-origin: bottom right; /* 保持模型固定在右下角 */
+              /* 如果位置偏移，可添加 translate 微调： */
+              /* transform: scale(0.6) translate(-10px, -10px); */
+            }
+          `,
+        },
+        {
           tag: 'script',
           attrs: { type: 'module' },
           content: `
@@ -46,7 +58,6 @@ export default defineConfig({
                 path: '/models/yanwenzi.model3.json',
               },
               position: 'bottom-right',
-              scale: 0.1,
             });
           `,
         },
