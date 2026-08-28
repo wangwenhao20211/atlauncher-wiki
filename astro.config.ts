@@ -55,7 +55,7 @@ export default defineConfig({
                   interval: 15000,
                 },
               },
-              position: 'bottom-left',
+              position: 'bottom-right',
               size: { width: 180, height: 80 },
             });
           `,
