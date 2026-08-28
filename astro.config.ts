@@ -32,7 +32,34 @@ export default defineConfig({
           tag: 'script',
           attrs: { type: 'module' },
           content: `
+            let is404Cache = null;
+            window.__is404 = async function() {
+              if (is404Cache !== null) return is404Cache;
+              try {
+                const res = await fetch(window.location.href, { method: 'HEAD' });
+                is404Cache = res.status === 404;
+                return is404Cache;
+              } catch {
+                is404Cache = false;
+                return false;
+              }
+            };
+          `,
+        },
+        {
+          tag: 'script',
+          attrs: { type: 'module' },
+          content: `
             import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
+            
+            const htmlLang = document.documentElement.lang || '';
+            const isEnglish = htmlLang.startsWith('en') || window.location.pathname.startsWith('/en/');
+            
+            const welcomeMsg = isEnglish ? ['Hello!'] : ['你好！'];
+            const msgs = isEnglish 
+              ? ['Leave a comment?', 'zzzzzzzzzzzzz', 'Try searching?', 'awa', 'You can edit this page...', 'Create pages in /src/content/docs/']
+              : ['去评论区说几句？', 'zzzzzzzzzzzzz', '试试搜点什么？', 'awa', '你也可以编辑页面...', '在/src/content/docs/下创建页面'];
+            
             createWidget({
               model: {
                 path: '/models/YWZ/yanwenzi.model3.json',
@@ -42,15 +69,8 @@ export default defineConfig({
                     param: 'ParamMouthOpenY',
                     speed: 100,
                   },
-                  welcomeMessage: ['你好！'],
-                  messages: [
-                    '去评论区说几句？',
-                    'zzzzzzzzzzzzz',
-                    '试试搜点什么？',
-                    'awa',
-                    '你也可以编辑页面...',
-                    '在/src/content/docs/下创建页面',
-                  ],
+                  welcomeMessage: welcomeMsg,
+                  messages: msgs,
                   duration: 4000,
                   interval: 15000,
                 },
@@ -64,10 +84,18 @@ export default defineConfig({
           tag: 'script',
           attrs: { type: 'module' },
           content: `
-            function addReadingTime() {
+            async function addReadingTime() {
               if (window.location.pathname === '/' || window.location.pathname === '/en/') return;
+              
+              // 检测 404
+              if (window.__is404) {
+                const is404 = await window.__is404();
+                if (is404) return;
+              }
+              
               const content = document.querySelector('.sl-markdown-content, main');
               if (!content) return;
+              
               const text = content.textContent || '';
               const chineseChars = (text.match(/[\\u4e00-\\u9fa5]/g) || []).length;
               const englishWords = text.trim().split(/\\s+/).filter(w => w.length > 0).length;
@@ -75,9 +103,11 @@ export default defineConfig({
               const englishTime = englishWords / 200;
               const totalMinutes = chineseTime + englishTime;
               const readingTime = Math.max(1, Math.round(totalMinutes));
+              
               const htmlLang = document.documentElement.lang || '';
               const isEnglishUI = htmlLang.startsWith('en') || window.location.pathname.startsWith('/en/');
               const label = isEnglishUI ? 'min read' : '分钟阅读';
+              
               const badge = document.createElement('div');
               badge.style.cssText = \`
                 display: inline-block;
@@ -90,6 +120,7 @@ export default defineConfig({
                 opacity: 0.8;
               \`;
               badge.textContent = \`\${readingTime} \${label}\`;
+              
               const title = content.querySelector('h1, h2, h3');
               if (title) {
                 title.parentNode.insertBefore(badge, title);
@@ -97,10 +128,32 @@ export default defineConfig({
                 content.prepend(badge);
               }
             }
+            
             if (document.readyState === 'loading') {
               document.addEventListener('DOMContentLoaded', addReadingTime);
             } else {
               addReadingTime();
+            }
+          `,
+        },
+        {
+          tag: 'script',
+          attrs: { type: 'module' },
+          content: `
+            async function hideGiscusOn404() {
+              if (window.__is404) {
+                const is404 = await window.__is404();
+                if (is404) {
+                  const style = document.createElement('style');
+                  style.textContent = '.giscus, .sl-markdown-content + div { display: none !important; }';
+                  document.head.appendChild(style);
+                }
+              }
+            }
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', hideGiscusOn404);
+            } else {
+              hideGiscusOn404();
             }
           `,
         },
