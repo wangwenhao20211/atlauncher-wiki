@@ -36,7 +36,7 @@ export default defineConfig({
             createWidget({
               model: {
                 path: '/models/yanwenzi.model3.json',
-                scale: 1,
+                scale: 1.2,
                 tips: {
                   typing: {
                     param: 'ParamMouthOpenY',
@@ -48,6 +48,8 @@ export default defineConfig({
                     'zzzzzzzzzzzzz',
                     '试试搜点什么？',
                     'awa',
+                    '你也可以编辑页面...',
+                    '在/src/content/docs/下创建页面',
                   ],
                   duration: 4000,
                   interval: 15000,
