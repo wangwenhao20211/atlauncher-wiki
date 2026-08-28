@@ -29,6 +29,21 @@ export default defineConfig({
       },
       head: [
         {
+          tag: 'style',
+          content: `
+            @font-face {
+              font-family: 'Caviar Dreams';
+              src: url('/fonts/caviardreams.ttf') format('truetype');
+              font-weight: normal;
+              font-style: normal;
+              font-display: swap;
+            }
+            body {
+              font-family: 'Caviar Dreams', sans-serif;
+            }
+          `,
+        },
+        {
           tag: 'script',
           attrs: { type: 'module' },
           content: `
@@ -57,7 +72,7 @@ export default defineConfig({
             
             const welcomeMsg = isEnglish ? ['Hello!'] : ['你好！'];
             const msgs = isEnglish 
-              ? ['Leave a comment?', 'zzzzzzzzzzzzz', 'Try searching?', 'awa', 'You can edit this page...', 'Create pages in /src/content/docs/']
+              ? ['Leave a comment?', 'zzzzzzzz', 'Try searching?', 'awa', 'You can edit this page...', 'Create pages in /src/content/docs/']
               : ['去评论区说几句？', 'zzzzzzzzzzzzz', '试试搜点什么？', 'awa', '你也可以编辑页面...', '在/src/content/docs/下创建页面'];
             
             createWidget({
