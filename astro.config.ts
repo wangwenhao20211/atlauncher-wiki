@@ -35,8 +35,8 @@ export default defineConfig({
             import { createWidget } from 'https://esm.sh/l2d-widget@0.1.1';
             createWidget({
               model: {
-                path: '/models/yanwenzi.model3.json',
-                scale: 1.2,
+                path: '/models/YWZ/yanwenzi.model3.json',
+                scale: 1.3,
                 tips: {
                   typing: {
                     param: 'ParamMouthOpenY',
@@ -55,7 +55,7 @@ export default defineConfig({
                   interval: 15000,
                 },
               },
-              position: 'bottom-right',
+              position: 'bottom-left',
               size: { width: 180, height: 80 },
             });
           `,
