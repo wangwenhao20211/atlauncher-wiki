@@ -72,7 +72,7 @@ export default defineConfig({
             
             const welcomeMsg = isEnglish ? ['Hello!'] : ['你好！'];
             const msgs = isEnglish 
-              ? ['Leave a comment?', 'zzzzzzzz', 'Try searching?', 'awa', 'You can edit this page...', 'Create pages in /src/content/docs/']
+              ? ['Leave a comment?', 'zzzzzzzzzzzzz', 'Try searching?', 'awa', 'You can edit this page...', 'Create pages in /src/content/docs/']
               : ['去评论区说几句？', 'zzzzzzzzzzzzz', '试试搜点什么？', 'awa', '你也可以编辑页面...', '在/src/content/docs/下创建页面'];
             
             createWidget({
@@ -90,6 +90,10 @@ export default defineConfig({
                   interval: 15000,
                 },
               },
+              display: {
+                hOffset: -40,
+                vOffset: -20,
+              },
               position: 'bottom-right',
               size: { width: 180, height: 80 },
             });
@@ -102,7 +106,6 @@ export default defineConfig({
             async function addReadingTime() {
               if (window.location.pathname === '/' || window.location.pathname === '/en/') return;
               
-              // 检测 404
               if (window.__is404) {
                 const is404 = await window.__is404();
                 if (is404) return;
