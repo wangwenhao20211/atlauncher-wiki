@@ -44,6 +44,14 @@ export default defineConfig({
           `,
         },
         {
+          tag: 'style',
+          content: `
+            #l2d-widget {
+              transform: translate(-40px, -100px) !important;
+            }
+          `,
+        },
+        {
           tag: 'script',
           attrs: { type: 'module' },
           content: `
@@ -72,7 +80,7 @@ export default defineConfig({
             
             const welcomeMsg = isEnglish ? ['Hello!'] : ['你好！'];
             const msgs = isEnglish 
-              ? ['Leave a comment?', 'zzzzzzzzzzzzz', 'Try searching?', 'awa', 'You can edit this page...', 'Create pages in /src/content/docs/']
+              ? ['Leave a comment?', 'zzzzzzzz', 'Try searching?', 'awa', 'You can edit this page...', 'Create pages in /src/content/docs/']
               : ['去评论区说几句？', 'zzzzzzzzzzzzz', '试试搜点什么？', 'awa', '你也可以编辑页面...', '在/src/content/docs/下创建页面'];
             
             createWidget({
@@ -90,10 +98,7 @@ export default defineConfig({
                   interval: 15000,
                 },
               },
-              position: {
-              bottom: 100,
-              right: 60,
-              },
+              position: 'bottom-right',
               size: { width: 180, height: 80 },
             });
           `,
