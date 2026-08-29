@@ -86,7 +86,7 @@ export default defineConfig({
                   },
                   welcomeMessage: welcomeMsg,
                   messages: msgs,
-                  duration: 4000,
+                  duration: 8000,
                   interval: 15000,
                 },
               },
