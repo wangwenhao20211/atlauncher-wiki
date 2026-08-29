@@ -91,8 +91,8 @@ export default defineConfig({
                 },
               },
               display: {
-                hOffset: -40,
-                vOffset: -20,
+                hOffset: -100,
+                vOffset: -200,
               },
               position: 'bottom-right',
               size: { width: 180, height: 80 },
