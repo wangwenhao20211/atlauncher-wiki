@@ -90,11 +90,10 @@ export default defineConfig({
                   interval: 15000,
                 },
               },
-              display: {
-                hOffset: -100,
-                vOffset: -200,
+              position: {
+              bottom: 100,
+              right: 60,
               },
-              position: 'bottom-right',
               size: { width: 180, height: 80 },
             });
           `,
